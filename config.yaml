@@ -2,9 +2,9 @@
 keywords:
   - "Adversarial Attacks"
   - "Malware"
-  - "Antivirus"
-  - "Large Language Models"
-  - "Code Generation"
+  # - "Antivirus"
+  # - "Large Language Models"
+  # - "Code Generation"
 
 arxiv:
   categories:
@@ -17,7 +17,7 @@ arxiv:
 
 github:
   usernames:
-    - "matouskozak"
+    - "dolejs-jan"
   issue_label: "arxiv-summary"
   max_papers_per_issue: 10
 
