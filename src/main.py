@@ -55,8 +55,8 @@ def main():
         print(f"Last run found: {last_run}")
         last_run = last_run - timedelta(hours=1)  # Buffer of 1 hour
     else:
-        last_run = datetime.now() - timedelta(days=1)
-        print(f"No previous run found. Fetching papers from last 1 day (since {last_run}).")
+        last_run = datetime.now() - timedelta(days=5)
+        print(f"No previous run found. Fetching papers from last 5 day (since {last_run}).")
     end_date = datetime.now()
 
     # 1. Fetch papers from arXiv
