@@ -8,7 +8,6 @@ on:
 permissions:
   contents: read
   issues: write
-  models: read
 
 jobs:
   summarize:
@@ -30,7 +29,6 @@ jobs:
           PYTHONUNBUFFERED: "1" # Ensures real-time logging
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          # Optional: Override LLM provider via repository secrets
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
         run: uv run src/main.py

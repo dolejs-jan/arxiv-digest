@@ -30,7 +30,7 @@ def call_with_retry(func, max_retries=5, base_delay=1.0, max_delay=60.0):
     """
     Call a function with exponential backoff retry on rate limit errors.
     
-    Respects Retry-After header from GitHub Models API when available.
+    Respects the provider's Retry-After header when available.
     
     Args:
         func: A callable (typically a lambda) that makes the API call
@@ -94,23 +94,27 @@ def load_config(config_path: str = "config.yaml") -> dict:
     if "github" not in config:
         config["github"] = {}
     
-    # Apply llm_service defaults
-    if "llm_service" not in config:
-        config["llm_service"] = {}
-    config["llm_service"].setdefault("base_url", "https://models.github.ai/inference")
+    # Apply and validate LLM service configuration
+    config["llm_service"] = config.get("llm_service") or {}
     
     # Allow environment variables to override config values
     if os.environ.get("LLM_BASE_URL"):
         config["llm_service"]["base_url"] = os.environ["LLM_BASE_URL"]
     
-    # API key: env var takes precedence, fallback to GITHUB_TOKEN for default provider
-    config["llm_service"]["api_key"] = os.environ.get("LLM_API_KEY") or os.environ.get("GITHUB_TOKEN")
+    if not config["llm_service"].get("base_url"):
+        raise ValueError(
+            "LLM base URL is not set. Configure 'llm_service.base_url' or set LLM_BASE_URL."
+        )
+
+    config["llm_service"]["api_key"] = os.environ.get("LLM_API_KEY")
+    if not config["llm_service"]["api_key"]:
+        raise ValueError("LLM API key is not set. Set LLM_API_KEY.")
     
     # Apply models defaults
     if "models" not in config:
         config["models"] = {}
-    config["models"].setdefault("filter", "gpt-4.1-mini")
-    config["models"].setdefault("summarize", "gpt-4.1")
+    config["models"].setdefault("filter", "gpt-5-mini")
+    config["models"].setdefault("summarize", "gpt-5")
     
     return config
 

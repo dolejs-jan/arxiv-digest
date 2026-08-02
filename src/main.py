@@ -10,7 +10,7 @@ from github_client import GitHubClient
 from utils import load_config
 
 def create_openai_client(base_url, api_key):
-    """Create and return an OpenAI client.
+    """Create and return an OpenAI-compatible client.
     
     Args:
         base_url: The base URL for the LLM API endpoint.
@@ -38,13 +38,13 @@ def main():
     usernames = github_config.get("usernames", [])
     issue_label = github_config.get("issue_label", "arxiv-summary")
     
-    openai_base_url = config["llm_service"]["base_url"]
+    llm_base_url = config["llm_service"]["base_url"]
     api_key = config["llm_service"]["api_key"]
     filter_model = config["models"]["filter"]
     summarize_model = config["models"]["summarize"]
     
     # Create clients
-    openai_client = create_openai_client(openai_base_url, api_key)
+    openai_client = create_openai_client(llm_base_url, api_key)
     github_client = GitHubClient()
     
     # 0. Determine start date

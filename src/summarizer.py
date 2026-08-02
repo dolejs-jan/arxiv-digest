@@ -61,7 +61,6 @@ Here is the paper content:
     return papers
 
 if __name__ == "__main__":
-    import os
     from openai import OpenAI
     from dotenv import load_dotenv
     from utils import load_config
@@ -71,8 +70,9 @@ if __name__ == "__main__":
     
     summarize_model = config["models"]["summarize"]
     base_url = config["llm_service"]["base_url"]
+    api_key = config["llm_service"]["api_key"]
     
-    client = OpenAI(base_url=base_url, api_key=os.environ.get("GITHUB_TOKEN"))
+    client = OpenAI(base_url=base_url, api_key=api_key)
     
     # Test with dummy data
     dummy_papers = [Paper(

@@ -1,7 +1,7 @@
 [project]
 name = "arxiv-paper-summarizer"
 version = "0.1.0"
-description = "Summarize ArXiv papers using GitHub Models and create GitHub Issues"
+description = "Summarize ArXiv papers using Microsoft Foundry models and create GitHub Issues"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -19,4 +19,3 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/arxiv_fetcher.py", "src/issue_creator.py", "src/main.py", "src/summarizer.py"]
-

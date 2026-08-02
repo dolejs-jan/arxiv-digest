@@ -21,13 +21,14 @@ github:
   issue_label: "arxiv-summary"
 
 llm_service:
-  base_url: "https://models.github.ai/inference"
-  # API key is read from LLM_API_KEY env var, falling back to GITHUB_TOKEN
-  # Examples for other providers:
+  # Set the endpoint here or with LLM_BASE_URL. The API key is read from LLM_API_KEY.
+  # Azure OpenAI v1: "https://<resource>.openai.azure.com/openai/v1/"
+  # Microsoft Foundry v1: "https://<resource>.services.ai.azure.com/openai/v1/"
   # OpenAI: base_url: "https://api.openai.com/v1"
-  # Azure: base_url: "https://<resource>.openai.azure.com/openai/deployments/<deployment>"
   # Local: base_url: "http://localhost:11434/v1"
+  base_url: null
 
 models:
-  filter: "gpt-4.1-mini"
-  summarize: "gpt-4.1"
+  # Azure uses deployment names here.
+  filter: "gpt-5-mini"
+  summarize: "gpt-5"
