@@ -19,6 +19,7 @@ github:
   usernames:
     - "matouskozak"
   issue_label: "arxiv-summary"
+  max_papers_per_issue: 10
 
 llm_service:
   # Set the endpoint here or with LLM_BASE_URL. The API key is read from LLM_API_KEY.
