@@ -31,4 +31,4 @@ llm_service:
 models:
   # Azure uses deployment names here.
   filter: "gpt-5-mini"
-  summarize: "gpt-5"
+  summarize: "gpt-5-mini"
